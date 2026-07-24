@@ -142,16 +142,11 @@
             <div id="resultsWrapper" class="space-y-6">
                 <!-- 1. Titles Section -->
                 <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
-                    <div class="flex justify-between items-center mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-indigo-400 flex items-center">
-                                <i class="fa-solid fa-heading mr-2"></i> High CTR / Psychological Clickbait Titles
-                            </h3>
-                            <p class="text-xs text-slate-400">Curiosity Gap & High Retention Titles</p>
-                        </div>
-                        <button onclick="copySection('titlesList')" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg transition-all">
-                            <i class="fa-regular fa-copy mr-1"></i> Copy All Titles
-                        </button>
+                    <div class="mb-4">
+                        <h3 class="text-lg font-bold text-indigo-400 flex items-center">
+                            <i class="fa-solid fa-heading mr-2"></i> High CTR / Psychological Clickbait Titles
+                        </h3>
+                        <p class="text-xs text-slate-400">Curiosity Gap & High Retention Titles (Individual Copy)</p>
                     </div>
                     <ul id="titlesList" class="space-y-3 text-slate-200"></ul>
                 </div>
@@ -350,9 +345,19 @@ Structure:
                 if (data.choices && data.choices[0]) {
                     const res = JSON.parse(data.choices[0].message.content);
 
-                    // Fill Titles
+                    // Fill Titles with Individual Copy Buttons
                     const titlesList = document.getElementById('titlesList');
-                    titlesList.innerHTML = res.titles.map(t => `<li class="bg-slate-900 p-3.5 rounded-xl border border-slate-700/50 flex items-center font-semibold text-white hover:border-indigo-500 transition-all"><i class="fa-solid fa-fire text-red-500 mr-3 text-lg"></i> ${t}</li>`).join('');
+                    titlesList.innerHTML = res.titles.map((t, index) => `
+                        <li class="bg-slate-900 p-3.5 rounded-xl border border-slate-700/50 flex items-center justify-between gap-3 font-semibold text-white hover:border-indigo-500 transition-all">
+                            <span class="flex items-center gap-3 overflow-hidden text-ellipsis whitespace-nowrap">
+                                <i class="fa-solid fa-fire text-red-500 text-lg flex-shrink-0"></i> 
+                                <span id="title-text-${index}" class="truncate">${t}</span>
+                            </span>
+                            <button onclick="copySingleText('title-text-${index}', this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-indigo-400 border border-slate-700 px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 flex-shrink-0 whitespace-nowrap">
+                                <i class="fa-regular fa-copy"></i> Copy
+                            </button>
+                        </li>
+                    `).join('');
 
                     // Fill First 3-sec Hook
                     document.getElementById('hookBox').innerText = res.video_hook;
@@ -380,6 +385,22 @@ Structure:
             }
         }
 
+        // Copy Single Title Function with Feedback
+        function copySingleText(elementId, btnElement) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalContent = btnElement.innerHTML;
+                btnElement.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i> Copied!';
+                btnElement.classList.add('border-emerald-500', 'text-emerald-400');
+                
+                setTimeout(() => {
+                    btnElement.innerHTML = originalContent;
+                    btnElement.classList.remove('border-emerald-500', 'text-emerald-400');
+                }, 2000);
+            });
+        }
+
+        // Copy Full Section Function
         function copySection(elementId) {
             const el = document.getElementById(elementId);
             let textToCopy = el.innerText;
