@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Video Booster 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-3xl mx-auto bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden">
+        <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-6 text-center">
+            <h1 class="text-3xl font-extrabold text-white flex items-center justify-center gap-3">
+                <i class="fa-solid fa-bolt text-yellow-300"></i> Viral Video Booster
+            </h1>
+            <p class="text-purple-100 mt-2 text-sm">Generate High-CTR Titles, SEO Descriptions & Viral Tags</p>
+        </div>
+
+        <form id="viralForm" class="p-6 space-y-6">
+            <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Upload Video</label>
+                <div class="border-2 border-dashed border-slate-700 hover:border-purple-500 rounded-xl p-6 text-center bg-slate-900/50 cursor-pointer transition relative">
+                    <input type="file" id="videoFile" accept="video/*" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                    <i class="fa-solid fa-cloud-arrow-up text-4xl text-purple-400 mb-2"></i>
+                    <p id="fileName" class="text-sm text-slate-300 font-medium">Video file select karein ya drag & drop karein</p>
+                    <p class="text-xs text-slate-500 mt-1">MP4, MOV, WebM supported</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">Target Platform</label>
+                    <select id="platform" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-purple-500">
+                        <option value="YouTube">YouTube</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="Instagram Reels">Instagram Reels</option>
+                        <option value="Facebook">Facebook Video</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">Video Format</label>
+                    <select id="videoType" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-purple-500">
+                        <option value="Short / Reel (Vertical)">Short / Reel (Vertical, &lt; 60s)</option>
+                        <option value="Long Form Video">Long Form Video (Horizontal)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-lg">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Viral Content Kit
+            </button>
+        </form>
+
+        <div id="loader" class="hidden p-8 text-center bg-slate-900/80 border-t border-slate-700">
+            <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-purple-500 border-t-transparent mb-4"></div>
+            <p id="statusText" class="text-purple-300 font-semibold text-lg">Processing Video...</p>
+            <p class="text-xs text-slate-400 mt-1">Isme 15-30 seconds lag saktay hain.</p>
+        </div>
+
+        <div id="errorBox" class="hidden m-6 p-4 bg-red-900/40 border border-red-500/50 rounded-xl text-red-200 text-sm"></div>
+
+        <div id="resultBox" class="hidden p-6 bg-slate-900 border-t border-slate-700 space-y-6">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="text-xl font-bold text-green-400 flex items-center gap-2">
+                    <i class="fa-solid fa-square-check"></i> Viral Kit Ready!
+                </h3>
+            </div>
+            
+            <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 relative">
+                <div class="flex justify-between items-center mb-3">
+                    <h4 class="text-amber-400 font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-heading"></i> Catchy Titles
+                    </h4>
+                    <button onclick="copyToClipboard('titlesContent', this)" class="bg-slate-800 hover:bg-slate-700 text-xs text-purple-300 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1 transition">
+                        <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                    </button>
+                </div>
+                <div id="titlesContent" class="text-slate-200 text-sm leading-relaxed whitespace-pre-wrap font-sans"></div>
+            </div>
+
+            <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 relative">
+                <div class="flex justify-between items-center mb-3">
+                    <h4 class="text-blue-400 font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-align-left"></i> Viral Description &amp; Hook
+                    </h4>
+                    <button onclick="copyToClipboard('descContent', this)" class="bg-slate-800 hover:bg-slate-700 text-xs text-purple-300 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1 transition">
+                        <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                    </button>
+                </div>
+                <div id="descContent" class="text-slate-200 text-sm leading-relaxed whitespace-pre-wrap font-sans"></div>
+            </div>
+
+            <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 relative">
+                <div class="flex justify-between items-center mb-3">
+                    <h4 class="text-emerald-400 font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-tags"></i> Tags &amp; Hashtags
+                    </h4>
+                    <button onclick="copyToClipboard('tagsContent', this)" class="bg-slate-800 hover:bg-slate-700 text-xs text-purple-300 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1 transition">
+                        <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                    </button>
+                </div>
+                <div id="tagsContent" class="text-slate-200 text-sm leading-relaxed whitespace-pre-wrap font-sans"></div>
+            </div>
+
+            <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 relative">
+                <div class="flex justify-between items-center mb-3">
+                    <h4 class="text-pink-400 font-bold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb"></i> Posting &amp; Audience Tips
+                    </h4>
+                    <button onclick="copyToClipboard('tipsContent', this)" class="bg-slate-800 hover:bg-slate-700 text-xs text-purple-300 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1 transition">
+                        <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                    </button>
+                </div>
+                <div id="tipsContent" class="text-slate-200 text-sm leading-relaxed whitespace-pre-wrap font-sans"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // 🔑 APNI NAYI (AQ...) API KEY NEECHE QUOTES MEIN PASTE KAREIN:
+        // ==========================================
+        const HIDDEN_API_KEY = "AQ...YOUR_NEW_KEY_HERE"; 
+
+        const MODELS = ["gemini-2.5-flash", "gemini-2.0-flash"];
+
+        document.getElementById('videoFile').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : "Video file select karein ya drag & drop karein";
+            document.getElementById('fileName').innerText = fileName;
+        });
+
+        document.getElementById('viralForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const apiKey = HIDDEN_API_KEY;
+            const videoFile = document.getElementById('videoFile').files[0];
+            const platform = document.getElementById('platform').value;
+            const videoType = document.getElementById('videoType').value;
+
+            const loader = document.getElementById('loader');
+            const statusText = document.getElementById('statusText');
+            const errorBox = document.getElementById('errorBox');
+            const resultBox = document.getElementById('resultBox');
+            const submitBtn = document.getElementById('submitBtn');
+
+            errorBox.classList.add('hidden');
+            resultBox.classList.add('hidden');
+            loader.classList.remove('hidden');
+            submitBtn.disabled = true;
+
+            try {
+                statusText.innerText = "📤 Step 1/2: Video upload ho rahi hai...";
+                const uploadResult = await uploadVideoToGemini(apiKey, videoFile);
+
+                statusText.innerText = "⏳ Step 2/2: Video analyze ho rahi hai...";
+                await waitForProcessing(apiKey, uploadResult.name);
+
+                const prompt = `
+                You are a top-tier Social Media Viral Growth Expert.
+                Analyze this video and generate a Viral Content Kit based on these parameters:
+
+                - Targeted Platform: ${platform}
+                - Content Format: ${videoType}
+
+                STRICT LANGUAGE RULE: 
+                - DO NOT USE HINDI SCRIPT (Devanagari).
+                - All output MUST BE IN ENGLISH or ROMAN ENGLISH (Urdu written in English script).
+
+                Return the response strictly in JSON format as follows:
+                {
+                  "titles": "1. High CTR English Title 1\\n2. High CTR English Title 2\\n3. High CTR English Title 3",
+                  "description": "Engaging Hook + Full SEO Description + Call to Action in English",
+                  "tags": "#hashtag1 #hashtag2 tag1, tag2, tag3",
+                  "tips": "Best posting time and target audience tips in English"
+                }
+                `;
+
+                let finalResponseRaw = null;
+
+                for (const model of MODELS) {
+                    try {
+                        statusText.innerText = `⚡ Viral content generate ho raha hai...`;
+                        finalResponseRaw = await generateContent(apiKey, model, uploadResult.uri, prompt);
+                        break; 
+                    } catch (err) {
+                        console.warn(`Model attempt failed, trying fallback...`, err);
+                    }
+                }
+
+                if (!finalResponseRaw) {
+                    throw new Error("Server response failed. Baraye meharbani dobara try karein.");
+                }
+
+                let parsedData;
+                try {
+                    const cleanJson = finalResponseRaw.replace(/```json/g, '').replace(/```/g, '').trim();
+                    parsedData = JSON.parse(cleanJson);
+                } catch (pErr) {
+                    parsedData = {
+                        titles: "Format error",
+                        description: finalResponseRaw,
+                        tags: "N/A",
+                        tips: "N/A"
+                    };
+                }
+
+                document.getElementById('titlesContent').innerText = parsedData.titles || "N/A";
+                document.getElementById('descContent').innerText = parsedData.description || "N/A";
+                document.getElementById('tagsContent').innerText = parsedData.tags || "N/A";
+                document.getElementById('tipsContent').innerText = parsedData.tips || "N/A";
+
+                resultBox.classList.remove('hidden');
+
+            } catch (err) {
+                errorBox.innerText = formatError(err.message);
+                errorBox.classList.remove('hidden');
+            } finally {
+                loader.classList.add('hidden');
+                submitBtn.disabled = false;
+            }
+        });
+
+        function copyToClipboard(elementId, btn) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `<i class="fa-solid fa-check text-green-400"></i> <span class="text-green-400">Copied!</span>`;
+                setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+            });
+        }
+
+        async function uploadVideoToGemini(apiKey, file) {
+            const initResponse = await fetch(`https://generativelanguage.googleapis.com/upload/v1beta/files?key=${apiKey}`, {
+                method: 'POST',
+                headers: {
+                    'X-Goog-Upload-Protocol': 'resumable',
+                    'X-Goog-Upload-Command': 'start',
+                    'X-Goog-Upload-Header-Content-Length': file.size,
+                    'X-Goog-Upload-Header-Content-Type': file.type,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ file: { display_name: file.name } })
+            });
+
+            if (!initResponse.ok) {
+                const errData = await initResponse.json();
+                throw new Error(errData.error?.message || `Upload failed status ${initResponse.status}`);
+            }
+
+            const uploadUrl = initResponse.headers.get('X-Goog-Upload-URL');
+
+            const uploadResponse = await fetch(uploadUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Length': file.size,
+                    'X-Goog-Upload-Offset': '0',
+                    'X-Goog-Upload-Command': 'upload, finalize'
+                },
+                body: file
+            });
+
+            const uploadData = await uploadResponse.json();
+            return uploadData.file;
+        }
+
+        async function waitForProcessing(apiKey, fileName) {
+            while (true) {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/${fileName}?key=${apiKey}`);
+                const data = await res.json();
+                if (data.state === 'ACTIVE') break;
+                if (data.state === 'FAILED') throw new Error("Video processing fail ho gayi.");
+                await new Promise(r => setTimeout(r, 4000));
+            }
+        }
+
+        async function generateContent(apiKey, model, fileUri, promptText) {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [
+                            { file_data: { mime_type: "video/mp4", file_uri: fileUri } },
+                            { text: promptText }
+                        ]
+                    }],
+                    generationConfig: { response_mime_type: "application/json" }
+                })
+            });
+
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error?.message || `Error ${res.status}`);
+            return data.candidates[0].content.parts[0].text;
+        }
+
+        function formatError(msg) {
+            if (msg.includes("403") || msg.toLowerCase().includes("permission") || msg.toLowerCase().includes("key")) {
+                return "🛑 System Access Error: Service temporary unavailable.";
+            } else if (msg.includes("429") || msg.toLowerCase().includes("quota")) {
+                return "⌛ Traffic High: Server Busy, thori der baad try karein.";
+            }
+            return "❌ [Error]: " + msg;
+        }
+    </script>
+</body>
+</html>
