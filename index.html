@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High-CTR Viral Content Engine | Groq AI</title>
+    <title>High-CTR Viral Content Engine</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -22,31 +22,31 @@
             🔥 High-CTR Viral Machine
         </h1>
         <p class="text-slate-200 text-sm md:text-base max-w-xl mx-auto font-medium">
-            AI-Powered Video Metadata & Viral Optimization Engine
+            Smart Video Metadata & Viral Optimization Engine
         </p>
     </header>
 
     <main class="max-w-4xl mx-auto px-4">
         
-        <!-- API Key Box with LocalStorage Save Option -->
+        <!-- Key Settings (Saved in Browser) -->
         <div class="bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-700 mb-6">
             <div class="flex justify-between items-center mb-2">
                 <label class="block text-sm font-semibold text-indigo-400">
-                    <i class="fa-solid fa-key mr-2"></i> Groq API Key
+                    <i class="fa-solid fa-key mr-2"></i> Access Key
                 </label>
                 <span id="saveStatus" class="text-xs text-emerald-400 font-medium hidden">
-                    <i class="fa-solid fa-circle-check mr-1"></i> Browser me Save Hai
+                    <i class="fa-solid fa-circle-check mr-1"></i> Saved in Browser
                 </span>
             </div>
             <div class="flex gap-2">
-                <input type="password" id="apiKey" placeholder="gsk_..." 
+                <input type="password" id="apiKey" placeholder="Enter your key..." 
                        class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 text-slate-100 placeholder-slate-500">
                 <button onclick="saveApiKey()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-3 rounded-xl transition-all whitespace-nowrap text-sm">
                     <i class="fa-solid fa-floppy-disk mr-1"></i> Save Key
                 </button>
             </div>
             <p class="text-xs text-slate-400 mt-2">
-                * Ek baar save karne par yeh aap ke browser (LocalStorage) me mehfooz ho jaye gi. Page refresh karne par dubara nahi daalni pare gi.
+                * Saved automatically in your local browser storage.
             </p>
         </div>
 
@@ -56,7 +56,7 @@
             <!-- Platform Selection -->
             <div>
                 <label class="block text-sm font-semibold mb-3 text-indigo-400">
-                    <i class="fa-solid fa-share-nodes mr-2"></i> Platform Select Karein
+                    <i class="fa-solid fa-share-nodes mr-2"></i> Select Platform
                 </label>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                     <label class="cursor-pointer">
@@ -89,19 +89,19 @@
             <!-- Video File Upload (Preview Player) -->
             <div>
                 <label class="block text-sm font-semibold mb-2 text-indigo-400">
-                    <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload Video Preview (Optional)
+                    <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload Video Preview
                 </label>
                 <div id="dropZone" class="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 text-center cursor-pointer bg-slate-900/50 transition-all">
                     <input type="file" id="videoFileInput" accept="video/*" class="hidden" onchange="handleVideoUpload(this)">
                     <div id="uploadPlaceholder">
                         <i class="fa-solid fa-file-video text-4xl text-slate-500 mb-2"></i>
-                        <p class="text-slate-300 font-medium text-sm">Apni video upload karein ya drag-and-drop karein</p>
-                        <p class="text-xs text-slate-500 mt-1">MP4, MOV, WEBM (Preview & Auto-analysis ke liye)</p>
+                        <p class="text-slate-300 font-medium text-sm">Drag and drop your video or click to upload</p>
+                        <p class="text-xs text-slate-500 mt-1">MP4, MOV, WEBM (Instant Media Preview)</p>
                     </div>
                     <div id="videoPreviewContainer" class="hidden space-y-3">
                         <video id="videoPreview" controls class="max-h-64 mx-auto rounded-xl shadow-lg border border-slate-700 w-full"></video>
                         <div class="flex items-center justify-center gap-2 text-xs text-emerald-400 font-medium">
-                            <i class="fa-solid fa-circle-check"></i> <span id="videoFileName">video.mp4</span> Ready for AI Analysis
+                            <i class="fa-solid fa-circle-check"></i> <span id="videoFileName">video.mp4</span> Ready for Optimization
                         </div>
                     </div>
                 </div>
@@ -110,10 +110,10 @@
             <!-- Video Context Input -->
             <div>
                 <label class="block text-sm font-semibold mb-2 text-indigo-400">
-                    <i class="fa-solid fa-pen-to-square mr-2"></i> Video Me Kia Ho Raha Hai? (Detail me batayein)
+                    <i class="fa-solid fa-pen-to-square mr-2"></i> Video Details & Context
                 </label>
                 <textarea id="videoPrompt" rows="4" 
-                          placeholder="Ex: PUBG me 1v4 clutch gameplay hai, 1 HP bacha tha aur intense moments hain..." 
+                          placeholder="Ex: PUBG 1v4 clutch gameplay, 1 HP clutch moment with high excitement..." 
                           class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 focus:outline-none focus:border-indigo-500 text-slate-100 placeholder-slate-500"></textarea>
             </div>
 
@@ -129,14 +129,14 @@
             
             <div class="flex items-center justify-between">
                 <h2 class="text-2xl font-bold text-emerald-400 flex items-center">
-                    <i class="fa-solid fa-fire-flame-curved mr-2"></i> High-CTR Viral Output
+                    <i class="fa-solid fa-fire-flame-curved mr-2"></i> High-CTR Output
                 </h2>
             </div>
 
             <!-- Loading Indicator -->
             <div id="loadingState" class="hidden bg-slate-800 rounded-2xl p-8 border border-slate-700 text-center">
                 <i class="fa-solid fa-spinner fa-spin text-4xl text-indigo-400 mb-3"></i>
-                <p class="text-slate-300 font-medium">Video frame analysis aur psychological viral triggers process ho rahe hain...</p>
+                <p class="text-slate-300 font-medium">Analyzing video metadata and generating viral triggers...</p>
             </div>
 
             <div id="resultsWrapper" class="space-y-6">
@@ -160,13 +160,13 @@
                 <div class="bg-slate-800 rounded-2xl p-6 border border-amber-500/30 shadow-xl">
                     <div class="flex justify-between items-center mb-2">
                         <h3 class="text-lg font-bold text-amber-400 flex items-center">
-                            <i class="fa-solid fa-microphone-lines mr-2"></i> Video Hook Line (Pehle 3 Sec Me Kia Bolna Hai)
+                            <i class="fa-solid fa-microphone-lines mr-2"></i> Video Hook Line (First 3 Seconds)
                         </h3>
                         <button onclick="copySection('hookBox')" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg transition-all">
                             <i class="fa-regular fa-copy mr-1"></i> Copy Hook
                         </button>
                     </div>
-                    <p class="text-xs text-slate-400 mb-3">Viewer drop-off rokne ke liye starting hook</p>
+                    <p class="text-xs text-slate-400 mb-3">Starting script line to prevent viewer scroll-away</p>
                     <div id="hookBox" class="bg-slate-900 p-4 rounded-xl text-amber-200 font-bold border border-amber-500/20"></div>
                 </div>
 
@@ -218,7 +218,7 @@
     <script>
         // LocalStorage Key & Drag-Drop Events Load
         document.addEventListener('DOMContentLoaded', () => {
-            const savedKey = localStorage.getItem('groq_api_key');
+            const savedKey = localStorage.getItem('app_access_key');
             if (savedKey) {
                 document.getElementById('apiKey').value = savedKey;
                 document.getElementById('saveStatus').classList.remove('hidden');
@@ -252,13 +252,13 @@
         function saveApiKey() {
             const key = document.getElementById('apiKey').value.trim();
             if (key) {
-                localStorage.setItem('groq_api_key', key);
+                localStorage.setItem('app_access_key', key);
                 document.getElementById('saveStatus').classList.remove('hidden');
-                alert('API Key browser me save ho gayi hai!');
+                alert('Access key saved in browser successfully!');
             } else {
-                localStorage.removeItem('groq_api_key');
+                localStorage.removeItem('app_access_key');
                 document.getElementById('saveStatus').classList.add('hidden');
-                alert('API Key delete kar di gayi hai.');
+                alert('Access key removed.');
             }
         }
 
@@ -276,7 +276,7 @@
 
                 const promptBox = document.getElementById('videoPrompt');
                 if (!promptBox.value) {
-                    promptBox.value = `[Uploaded File: ${file.name}] - Video gameplay/content analysis.`;
+                    promptBox.value = `[Uploaded Video: ${file.name}] - Video gameplay/content analysis.`;
                 }
             }
         }
@@ -291,23 +291,23 @@
             const resultsWrapper = document.getElementById('resultsWrapper');
 
             if (!apiKey) {
-                alert('Meharbani karke Groq API Key daalein!');
+                alert('Please enter your Access Key first!');
                 return;
             }
 
             if (!prompt) {
-                alert('Video ki detail likhiye!');
+                alert('Please enter video details!');
                 return;
             }
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing...';
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing Media...';
             outputContainer.classList.remove('hidden');
             loadingState.classList.remove('hidden');
             resultsWrapper.classList.add('hidden');
 
             const systemPrompt = `You are a world-class Social Media Growth Hacker. Your goal is MAXIMUM CTR (Click-Through Rate) and MAXIMUM VIRALITY.
-Avoid boring, generic AI titles. Use psychological triggers: Fear of missing out, extreme curiosity, high stakes, shock value, numbers, bold claims, or open loops.
+Avoid boring, generic titles. Use psychological triggers: Fear of missing out, extreme curiosity, high stakes, shock value, numbers, bold claims, or open loops.
 
 Respond ONLY with a strictly valid JSON object (no markdown, no backticks).
 Structure:
@@ -369,11 +369,11 @@ Structure:
                     loadingState.classList.add('hidden');
                     resultsWrapper.classList.remove('hidden');
                 } else {
-                    alert('Groq API Error: Response nahi mila.');
+                    alert('Error: Unable to process request. Check Key validity.');
                 }
             } catch (error) {
                 console.error(error);
-                alert('Request Fail ho gayi! Check karein ke API Key sahi hai ya nahi.');
+                alert('Processing failed. Please check your Access Key or Network connection.');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="fa-solid fa-bolt mr-2"></i> Generate Viral Package';
