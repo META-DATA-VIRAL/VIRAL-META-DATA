@@ -1,978 +1,392 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="ur" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Video SEO Generator - Premium SaaS Platform</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#f0f3ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              900: '#1e1b4b',
-            },
-            darkbg: '#0b0f19',
-            darkcard: 'rgba(17, 24, 39, 0.7)',
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-CTR Viral Content Engine | Groq AI</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #ef4444 0%, #8b5cf6 50%, #3b82f6 100%);
         }
-      }
-    }
-  </script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- PDF & Docx Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docx@8.2.3/build/index.umd.min.js"></script>
-  <style>
-    .glass-panel {
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    .dark .glass-panel {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(229, 231, 235, 0.5);
-    }
-    .dark .glass-card {
-      background: rgba(30, 41, 59, 0.5);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.4); border-radius: 9999px; }
-    .dark ::-webkit-scrollbar-thumb { background: rgba(75, 85, 99, 0.4); }
-  </style>
+    </style>
 </head>
-<body class="bg-slate-50 dark:bg-darkbg text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
+<body class="bg-slate-900 text-slate-100 min-h-screen pb-12">
 
-  <!-- TOP NAVIGATION BAR -->
-  <header class="sticky top-0 z-40 w-full glass-panel border-b border-slate-200/50 dark:border-slate-800/50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="p-2 bg-gradient-to-tr from-indigo-600 to-violet-500 rounded-xl text-white shadow-lg shadow-indigo-500/30">
-          <i data-lucide="sparkles" class="w-6 h-6"></i>
-        </div>
-        <div>
-          <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-violet-600 dark:from-indigo-400 dark:to-violet-400">
-            ViralSEO AI
-          </span>
-          <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800">
-            v2.5 Flash Multimodal
-          </span>
-        </div>
-      </div>
+    <!-- Header -->
+    <header class="gradient-bg py-8 px-4 shadow-xl mb-8 text-center">
+        <h1 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-2">
+            🔥 High-CTR Viral Machine
+        </h1>
+        <p class="text-slate-200 text-sm md:text-base max-w-xl mx-auto font-medium">
+            AI-Powered Video Metadata & Viral Optimization Engine
+        </p>
+    </header>
 
-      <div class="flex items-center space-x-3">
-        <button id="themeToggleBtn" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all">
-          <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
-          <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
-        </button>
-
-        <button id="historyBtn" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all flex items-center gap-1">
-          <i data-lucide="history" class="w-5 h-5"></i>
-          <span class="hidden sm:inline text-sm font-medium">History</span>
-        </button>
-
-        <button id="settingsBtn" class="p-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-600/20 transition-all flex items-center gap-2">
-          <i data-lucide="key" class="w-4 h-4"></i>
-          <span class="text-sm font-medium hidden sm:inline">API Settings</span>
-          <span id="apiKeyBadge" class="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
-
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-
-      <!-- LEFT COLUMN -->
-      <section class="lg:col-span-5 flex flex-col gap-6">
+    <main class="max-w-4xl mx-auto px-4">
         
-        <div class="glass-panel p-6 rounded-2xl shadow-xl border border-slate-200/60 dark:border-slate-800/60">
-          <h2 class="text-lg font-semibold flex items-center gap-2 mb-4">
-            <i data-lucide="video" class="w-5 h-5 text-indigo-500"></i>
-            1. Upload Video File
-          </h2>
+        <!-- API Key Box with LocalStorage Save Option -->
+        <div class="bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-700 mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <label class="block text-sm font-semibold text-indigo-400">
+                    <i class="fa-solid fa-key mr-2"></i> Groq API Key
+                </label>
+                <span id="saveStatus" class="text-xs text-emerald-400 font-medium hidden">
+                    <i class="fa-solid fa-circle-check mr-1"></i> Browser me Save Hai
+                </span>
+            </div>
+            <div class="flex gap-2">
+                <input type="password" id="apiKey" placeholder="gsk_..." 
+                       class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 text-slate-100 placeholder-slate-500">
+                <button onclick="saveApiKey()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-3 rounded-xl transition-all whitespace-nowrap text-sm">
+                    <i class="fa-solid fa-floppy-disk mr-1"></i> Save Key
+                </button>
+            </div>
+            <p class="text-xs text-slate-400 mt-2">
+                * Ek baar save karne par yeh aap ke browser (LocalStorage) me mehfooz ho jaye gi. Page refresh karne par dubara nahi daalni pare gi.
+            </p>
+        </div>
 
-          <div id="dropZone" class="border-2 border-dashed border-indigo-300 dark:border-indigo-900/60 rounded-xl p-6 text-center cursor-pointer hover:border-indigo-500 dark:hover:border-indigo-500 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 transition-all group">
-            <input type="file" id="videoInput" accept="video/mp4,video/quicktime,video/x-msvideo,video/x-matroska" class="hidden" />
+        <!-- Input Form -->
+        <div class="bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-700 mb-8 space-y-6">
             
-            <div id="uploadPrompt" class="flex flex-col items-center">
-              <div class="p-4 bg-indigo-50 dark:bg-slate-800 rounded-full text-indigo-600 dark:text-indigo-400 mb-3 group-hover:scale-110 transition-transform">
-                <i data-lucide="upload-cloud" class="w-8 h-8"></i>
-              </div>
-              <p class="text-sm font-medium text-slate-700 dark:text-slate-200">
-                Drag & Drop video here or <span class="text-indigo-600 dark:text-indigo-400 underline">browse</span>
-              </p>
-              <p class="text-xs text-slate-400 mt-1">Supports MP4, MOV, AVI, MKV (Max 200MB)</p>
-            </div>
-
-            <div id="videoPreviewState" class="hidden flex-col items-center">
-              <video id="videoPreview" class="w-full max-h-48 rounded-lg mb-3 object-cover shadow" controls></video>
-              <div class="w-full text-left bg-slate-100 dark:bg-slate-800/80 p-3 rounded-lg text-xs space-y-1">
-                <p class="font-semibold truncate text-slate-800 dark:text-slate-200" id="fileName">-</p>
-                <div class="flex justify-between text-slate-500 dark:text-slate-400">
-                  <span id="fileSize">Size: 0 MB</span>
-                  <span id="fileDuration">Duration: 0s</span>
+            <!-- Platform Selection -->
+            <div>
+                <label class="block text-sm font-semibold mb-3 text-indigo-400">
+                    <i class="fa-solid fa-share-nodes mr-2"></i> Platform Select Karein
+                </label>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <label class="cursor-pointer">
+                        <input type="radio" name="platform" value="YouTube Shorts / Video" checked class="peer hidden">
+                        <div class="p-3 bg-slate-900 border border-slate-700 rounded-xl text-center peer-checked:border-red-500 peer-checked:bg-red-500/10 peer-checked:text-red-400 font-medium transition-all">
+                            <i class="fa-brands fa-youtube block text-2xl mb-1"></i> YouTube
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="platform" value="TikTok" class="peer hidden">
+                        <div class="p-3 bg-slate-900 border border-slate-700 rounded-xl text-center peer-checked:border-pink-500 peer-checked:bg-pink-500/10 peer-checked:text-pink-400 font-medium transition-all">
+                            <i class="fa-brands fa-tiktok block text-2xl mb-1"></i> TikTok
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="platform" value="Instagram Reels" class="peer hidden">
+                        <div class="p-3 bg-slate-900 border border-slate-700 rounded-xl text-center peer-checked:border-purple-500 peer-checked:bg-purple-500/10 peer-checked:text-purple-400 font-medium transition-all">
+                            <i class="fa-brands fa-instagram block text-2xl mb-1"></i> Instagram
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="platform" value="Facebook Reels" class="peer hidden">
+                        <div class="p-3 bg-slate-900 border border-slate-700 rounded-xl text-center peer-checked:border-blue-500 peer-checked:bg-blue-500/10 peer-checked:text-blue-400 font-medium transition-all">
+                            <i class="fa-brands fa-facebook block text-2xl mb-1"></i> Facebook
+                        </div>
+                    </label>
                 </div>
-              </div>
-              <button id="removeVideoBtn" class="mt-3 text-xs text-red-500 hover:text-red-600 font-medium flex items-center gap-1">
-                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Remove Video
-              </button>
             </div>
-          </div>
 
-          <div id="frameExtractionProgress" class="hidden mt-4">
-            <div class="flex justify-between text-xs font-medium mb-1">
-              <span class="text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
-                <i data-lucide="cpu" class="w-3.5 h-3.5 animate-spin"></i> Extracting Multimodal Video Frames...
-              </span>
-              <span id="frameProgressText">0%</span>
-            </div>
-            <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
-              <div id="frameProgressBar" class="bg-gradient-to-r from-indigo-500 to-violet-500 h-full w-0 transition-all duration-300"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="glass-panel p-6 rounded-2xl shadow-xl border border-slate-200/60 dark:border-slate-800/60 space-y-5">
-          <h2 class="text-lg font-semibold flex items-center gap-2">
-            <i data-lucide="sliders" class="w-5 h-5 text-indigo-500"></i>
-            2. Optimization Settings
-          </h2>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
-              Working Video Title / Topic
-            </label>
-            <input type="text" id="videoTitleInput" placeholder="e.g. 10 Mistakes beginner coders make in 2026" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all" />
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
-              Target Platform
-            </label>
-            <div class="grid grid-cols-2 gap-2" id="platformGrid"></div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
+            <!-- Video File Upload (Preview Player) -->
             <div>
-              <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
-                Output Language
-              </label>
-              <select id="languageSelect" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                <option value="English">English</option>
-                <option value="Urdu">Urdu (اردو)</option>
-                <option value="Hindi">Hindi (हिंदी)</option>
-                <option value="Roman Urdu">Roman Urdu</option>
-              </select>
+                <label class="block text-sm font-semibold mb-2 text-indigo-400">
+                    <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload Video Preview (Optional)
+                </label>
+                <div id="dropZone" class="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 text-center cursor-pointer bg-slate-900/50 transition-all">
+                    <input type="file" id="videoFileInput" accept="video/*" class="hidden" onchange="handleVideoUpload(this)">
+                    <div id="uploadPlaceholder">
+                        <i class="fa-solid fa-file-video text-4xl text-slate-500 mb-2"></i>
+                        <p class="text-slate-300 font-medium text-sm">Apni video upload karein ya drag-and-drop karein</p>
+                        <p class="text-xs text-slate-500 mt-1">MP4, MOV, WEBM (Preview & Auto-analysis ke liye)</p>
+                    </div>
+                    <div id="videoPreviewContainer" class="hidden space-y-3">
+                        <video id="videoPreview" controls class="max-h-64 mx-auto rounded-xl shadow-lg border border-slate-700 w-full"></video>
+                        <div class="flex items-center justify-center gap-2 text-xs text-emerald-400 font-medium">
+                            <i class="fa-solid fa-circle-check"></i> <span id="videoFileName">video.mp4</span> Ready for AI Analysis
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <!-- Video Context Input -->
             <div>
-              <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
-                Content Tone
-              </label>
-              <select id="toneSelect" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                <option value="Professional">Professional</option>
-                <option value="Educational">Educational</option>
-                <option value="Funny">Funny</option>
-                <option value="Motivational">Motivational</option>
-                <option value="Emotional">Emotional</option>
-                <option value="Storytelling">Storytelling</option>
-                <option value="Luxury">Luxury Brand</option>
-                <option value="Tech">Tech</option>
-                <option value="Gaming">Gaming</option>
-                <option value="Kids">Kids</option>
-                <option value="Business">Business</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
-              Optional Context / Specific Instructions
-            </label>
-            <textarea id="customPromptInput" rows="2" placeholder="e.g. Focus on affiliate links, target Gen Z audience..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"></textarea>
-          </div>
-
-          <button id="generateBtn" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-semibold shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-2 transform active:scale-95 transition-all text-base">
-            <i data-lucide="sparkles" class="w-5 h-5"></i>
-            <span>Generate Viral SEO Content</span>
-          </button>
-        </div>
-
-      </section>
-
-      <!-- RIGHT COLUMN -->
-      <section class="lg:col-span-7 flex flex-col gap-6">
-
-        <div id="emptyState" class="glass-panel p-12 rounded-2xl text-center border border-slate-200/60 dark:border-slate-800/60 flex flex-col items-center justify-center min-h-[500px]">
-          <div class="w-20 h-20 bg-indigo-50 dark:bg-indigo-950/60 rounded-full flex items-center justify-center text-indigo-500 mb-4 animate-bounce">
-            <i data-lucide="video" class="w-10 h-10"></i>
-          </div>
-          <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 mb-2">Ready to Go Viral?</h3>
-          <p class="text-slate-500 dark:text-slate-400 text-sm max-w-md">
-            Upload your video file and configure settings to generate Gemini-powered multimodal titles, tags, descriptions, thumbnail hooks, and high-CPC keywords.
-          </p>
-        </div>
-
-        <div id="loadingState" class="hidden glass-panel p-12 rounded-2xl text-center border border-slate-200/60 dark:border-slate-800/60 flex flex-col items-center justify-center min-h-[500px]">
-          <div class="relative w-20 h-20 mb-6">
-            <div class="absolute inset-0 rounded-full border-4 border-indigo-200 dark:border-slate-800"></div>
-            <div class="absolute inset-0 rounded-full border-4 border-indigo-600 border-t-transparent animate-spin"></div>
-            <i data-lucide="bot" class="w-8 h-8 text-indigo-500 absolute inset-0 m-auto"></i>
-          </div>
-          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-1">Gemini AI is Analyzing Video Content...</h3>
-          <p class="text-slate-500 dark:text-slate-400 text-xs max-w-sm mb-4">Reading video frames, analyzing audio cues, checking platform SEO trends, and calculating viral difficulty.</p>
-          <div class="w-48 bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-indigo-600 h-full w-full animate-pulse"></div>
-          </div>
-        </div>
-
-        <div id="resultsDashboard" class="hidden flex-col gap-6">
-
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div class="glass-card p-4 rounded-xl text-center">
-              <span class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold">Viral Score</span>
-              <div class="text-2xl font-black text-indigo-500 mt-1" id="viralScoreMeter">0%</div>
-              <div class="w-full bg-slate-200 dark:bg-slate-700 h-1 rounded-full mt-2 overflow-hidden">
-                <div id="viralBar" class="bg-indigo-500 h-full w-0 transition-all duration-1000"></div>
-              </div>
+                <label class="block text-sm font-semibold mb-2 text-indigo-400">
+                    <i class="fa-solid fa-pen-to-square mr-2"></i> Video Me Kia Ho Raha Hai? (Detail me batayein)
+                </label>
+                <textarea id="videoPrompt" rows="4" 
+                          placeholder="Ex: PUBG me 1v4 clutch gameplay hai, 1 HP bacha tha aur intense moments hain..." 
+                          class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 focus:outline-none focus:border-indigo-500 text-slate-100 placeholder-slate-500"></textarea>
             </div>
 
-            <div class="glass-card p-4 rounded-xl text-center">
-              <span class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold">SEO Score</span>
-              <div class="text-2xl font-black text-emerald-500 mt-1" id="seoScoreMeter">0%</div>
-              <div class="w-full bg-slate-200 dark:bg-slate-700 h-1 rounded-full mt-2 overflow-hidden">
-                <div id="seoBar" class="bg-emerald-500 h-full w-0 transition-all duration-1000"></div>
-              </div>
-            </div>
-
-            <div class="glass-card p-4 rounded-xl text-center">
-              <span class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold">CTR Score</span>
-              <div class="text-2xl font-black text-violet-500 mt-1" id="ctrScoreMeter">0%</div>
-              <div class="w-full bg-slate-200 dark:bg-slate-700 h-1 rounded-full mt-2 overflow-hidden">
-                <div id="ctrBar" class="bg-violet-500 h-full w-0 transition-all duration-1000"></div>
-              </div>
-            </div>
-
-            <div class="glass-card p-4 rounded-xl text-center">
-              <span class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold">Est. Read Time</span>
-              <div class="text-2xl font-black text-amber-500 mt-1" id="readTimeMeter">0s</div>
-              <p class="text-[10px] text-slate-400 mt-1" id="charCountMeter">0 chars</p>
-            </div>
-          </div>
-
-          <div class="glass-panel p-4 rounded-xl flex items-center justify-between gap-3 border border-slate-200/60 dark:border-slate-800/60">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Bulk Export Full Strategy
-            </span>
-            <div class="flex items-center gap-2">
-              <button onclick="ExportManager.exportAllTXT()" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-xs font-medium transition-all flex items-center gap-1">
-                <i data-lucide="file-text" class="w-3.5 h-3.5"></i> TXT
-              </button>
-              <button onclick="ExportManager.exportAllDOCX()" class="px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 text-xs font-medium transition-all flex items-center gap-1">
-                <i data-lucide="file" class="w-3.5 h-3.5"></i> DOCX
-              </button>
-              <button onclick="ExportManager.exportAllPDF()" class="px-3 py-1.5 rounded-lg bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 hover:bg-red-100 text-xs font-medium transition-all flex items-center gap-1">
-                <i data-lucide="file-down" class="w-3.5 h-3.5"></i> PDF
-              </button>
-            </div>
-          </div>
-
-          <div id="generatedContentContainer" class="space-y-6"></div>
-
-        </div>
-
-      </section>
-
-    </div>
-  </main>
-
-  <!-- SETTINGS MODAL -->
-  <div id="settingsModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="glass-panel w-full max-w-md rounded-2xl p-6 shadow-2xl border border-slate-200/60 dark:border-slate-800/60 relative">
-      <button id="closeSettingsBtn" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <h3 class="text-lg font-bold flex items-center gap-2 mb-2">
-        <i data-lucide="key" class="w-5 h-5 text-indigo-500"></i>
-        Gemini API Settings
-      </h3>
-      <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
-        Enter your Google AI Studio API key.
-      </p>
-
-      <div class="space-y-4">
-        <div>
-          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
-            Google AI Studio API Key
-          </label>
-          <input type="password" id="apiKeyInput" placeholder="Paste key here (e.g. AIzaSy...)" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono" />
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
-            Active Gemini Model
-          </label>
-          <input type="text" id="modelConfigDisplay" value="gemini-2.5-flash" disabled class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/80 text-slate-500 text-sm font-mono cursor-not-allowed" />
-        </div>
-
-        <button id="saveApiKeyBtn" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all">
-          Save Settings
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- HISTORY MODAL -->
-  <div id="historyModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="glass-panel w-full max-w-2xl rounded-2xl p-6 shadow-2xl border border-slate-200/60 dark:border-slate-800/60 relative flex flex-col max-h-[80vh]">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-lg font-bold flex items-center gap-2">
-          <i data-lucide="history" class="w-5 h-5 text-indigo-500"></i>
-          Recent Generated Projects
-        </h3>
-        <button id="closeHistoryBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <div id="historyList" class="flex-1 overflow-y-auto space-y-3 pr-2"></div>
-    </div>
-  </div>
-
-  <script>
-    const CONFIG = {
-      PLATFORMS: [
-        { id: 'YouTube', name: 'YouTube', icon: 'youtube' },
-        { id: 'TikTok', name: 'TikTok', icon: 'music-2' },
-        { id: 'Instagram Reels', name: 'IG Reels', icon: 'instagram' },
-        { id: 'YouTube Shorts', name: 'Shorts', icon: 'play-square' },
-        { id: 'Facebook', name: 'Facebook', icon: 'facebook' },
-        { id: 'Instagram Feed', name: 'IG Feed', icon: 'image' },
-        { id: 'Snapchat Spotlight', name: 'Snapchat', icon: 'ghost' },
-        { id: 'LinkedIn', name: 'LinkedIn', icon: 'linkedin' },
-        { id: 'X (Twitter)', name: 'X / Twitter', icon: 'twitter' },
-        { id: 'Pinterest', name: 'Pinterest', icon: 'pin' }
-      ]
-    };
-
-    const State = {
-      apiKey: localStorage.getItem('gemini_api_key') || '',
-      selectedPlatform: 'YouTube',
-      selectedVideoFile: null,
-      extractedFramesBase64: [],
-      currentGeneratedData: null,
-      history: JSON.parse(localStorage.getItem('viral_seo_history') || '[]')
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      initTheme();
-      renderPlatforms();
-      updateApiKeyBadge();
-      setupEventListeners();
-    });
-
-    function initTheme() {
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
-
-    function updateApiKeyBadge() {
-      const badge = document.getElementById('apiKeyBadge');
-      if (State.apiKey && State.apiKey.trim().length > 5) {
-        badge.classList.remove('bg-red-400', 'animate-pulse');
-        badge.classList.add('bg-emerald-400');
-      } else {
-        badge.classList.remove('bg-emerald-400');
-        badge.classList.add('bg-red-400', 'animate-pulse');
-      }
-    }
-
-    function renderPlatforms() {
-      const grid = document.getElementById('platformGrid');
-      grid.innerHTML = CONFIG.PLATFORMS.map(p => `
-        <button type="button" data-platform="${p.id}" class="platform-btn flex items-center gap-2 p-2.5 rounded-xl border text-xs font-medium transition-all ${
-          State.selectedPlatform === p.id 
-            ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 shadow-sm' 
-            : 'border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 text-slate-600 dark:text-slate-400 hover:border-indigo-300'
-        }">
-          <i data-lucide="${p.icon}" class="w-4 h-4"></i>
-          <span class="truncate">${p.name}</span>
-        </button>
-      `).join('');
-      lucide.createIcons();
-    }
-
-    function setupEventListeners() {
-      document.getElementById('themeToggleBtn').addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-      });
-
-      document.getElementById('settingsBtn').addEventListener('click', () => {
-        document.getElementById('apiKeyInput').value = State.apiKey;
-        document.getElementById('settingsModal').classList.remove('hidden');
-      });
-      document.getElementById('closeSettingsBtn').addEventListener('click', () => {
-        document.getElementById('settingsModal').classList.add('hidden');
-      });
-      document.getElementById('saveApiKeyBtn').addEventListener('click', () => {
-        const key = document.getElementById('apiKeyInput').value.trim();
-        State.apiKey = key;
-        localStorage.setItem('gemini_api_key', key);
-        updateApiKeyBadge();
-        document.getElementById('settingsModal').classList.add('hidden');
-        showToast('API Key saved successfully!', 'success');
-      });
-
-      document.getElementById('historyBtn').addEventListener('click', () => {
-        renderHistory();
-        document.getElementById('historyModal').classList.remove('hidden');
-      });
-      document.getElementById('closeHistoryBtn').addEventListener('click', () => {
-        document.getElementById('historyModal').classList.add('hidden');
-      });
-
-      document.getElementById('platformGrid').addEventListener('click', (e) => {
-        const btn = e.target.closest('.platform-btn');
-        if (!btn) return;
-        State.selectedPlatform = btn.dataset.platform;
-        renderPlatforms();
-      });
-
-      const dropZone = document.getElementById('dropZone');
-      const videoInput = document.getElementById('videoInput');
-
-      dropZone.addEventListener('click', (e) => {
-        if (!e.target.closest('#removeVideoBtn') && !e.target.closest('video')) {
-          videoInput.click();
-        }
-      });
-      dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('border-indigo-500'); });
-      dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('border-indigo-500'); });
-      dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('border-indigo-500');
-        if (e.dataTransfer.files.length) handleVideoSelection(e.dataTransfer.files[0]);
-      });
-      videoInput.addEventListener('change', (e) => {
-        if (e.target.files.length) handleVideoSelection(e.target.files[0]);
-      });
-
-      document.getElementById('removeVideoBtn').addEventListener('click', (e) => {
-        e.stopPropagation();
-        resetVideoSelection();
-      });
-
-      document.getElementById('generateBtn').addEventListener('click', generateSEOContent);
-    }
-
-    function handleVideoSelection(file) {
-      if (!file.type.startsWith('video/')) {
-        showToast('Please upload a valid video file (MP4, MOV, AVI, MKV).', 'error');
-        return;
-      }
-
-      if (file.size > 200 * 1024 * 1024) {
-        showToast('File size exceeds 200MB limit.', 'error');
-        return;
-      }
-
-      State.selectedVideoFile = file;
-      document.getElementById('fileName').innerText = file.name;
-      document.getElementById('fileSize').innerText = `Size: ${(file.size / (1024 * 1024)).toFixed(2)} MB`;
-
-      const videoPreview = document.getElementById('videoPreview');
-      const url = URL.createObjectURL(file);
-      videoPreview.src = url;
-
-      document.getElementById('uploadPrompt').classList.add('hidden');
-      document.getElementById('videoPreviewState').classList.remove('hidden');
-
-      videoPreview.onloadedmetadata = () => {
-        document.getElementById('fileDuration').innerText = `Duration: ${Math.round(videoPreview.duration)}s`;
-        extractVideoFrames(videoPreview);
-      };
-    }
-
-    function resetVideoSelection() {
-      State.selectedVideoFile = null;
-      State.extractedFramesBase64 = [];
-      document.getElementById('videoInput').value = '';
-      document.getElementById('uploadPrompt').classList.remove('hidden');
-      document.getElementById('videoPreviewState').classList.add('hidden');
-      document.getElementById('frameExtractionProgress').classList.add('hidden');
-    }
-
-    async function extractVideoFrames(videoElement) {
-      const progressContainer = document.getElementById('frameExtractionProgress');
-      const progressBar = document.getElementById('frameProgressBar');
-      const progressText = document.getElementById('frameProgressText');
-
-      progressContainer.classList.remove('hidden');
-      State.extractedFramesBase64 = [];
-
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      const duration = videoElement.duration;
-      const numFrames = 5;
-
-      for (let i = 0; i < numFrames; i++) {
-        const time = (duration / (numFrames + 1)) * (i + 1);
-        await seekVideoToTime(videoElement, time);
-
-        canvas.width = 480;
-        canvas.height = Math.round((videoElement.videoHeight / videoElement.videoWidth) * 480) || 270;
-        ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
-        State.extractedFramesBase64.push(dataUrl.split(',')[1]);
-
-        const percent = Math.round(((i + 1) / numFrames) * 100);
-        progressBar.style.width = `${percent}%`;
-        progressText.innerText = `${percent}%`;
-      }
-
-      setTimeout(() => progressContainer.classList.add('hidden'), 1000);
-      showToast('Extracted video visual frames for multimodal AI analysis.', 'info');
-    }
-
-    function seekVideoToTime(video, time) {
-      return new Promise((resolve) => {
-        const onSeeked = () => {
-          video.removeEventListener('seeked', onSeeked);
-          resolve();
-        };
-        video.addEventListener('seeked', onSeeked);
-        video.currentTime = time;
-      });
-    }
-
-    /* DIRECT GEMINI API CALL (NO FALLBACK ERRONEOUS MODELS) */
-    async function generateSEOContent() {
-      if (!State.apiKey) {
-        showToast('Gemini API Key is missing. Please click API Settings to save your key.', 'error');
-        document.getElementById('settingsBtn').click();
-        return;
-      }
-
-      const videoTitle = document.getElementById('videoTitleInput').value.trim();
-      const language = document.getElementById('languageSelect').value;
-      const tone = document.getElementById('toneSelect').value;
-      const customPrompt = document.getElementById('customPromptInput').value.trim();
-
-      if (!videoTitle && !State.selectedVideoFile) {
-        showToast('Please upload a video or provide a video title/topic.', 'error');
-        return;
-      }
-
-      document.getElementById('emptyState').classList.add('hidden');
-      document.getElementById('resultsDashboard').classList.add('hidden');
-      document.getElementById('loadingState').classList.remove('hidden');
-
-      try {
-        const promptText = buildGeminiPrompt({
-          title: videoTitle || (State.selectedVideoFile ? State.selectedVideoFile.name : 'Untitled Video'),
-          filename: State.selectedVideoFile ? State.selectedVideoFile.name : 'unknown',
-          platform: State.selectedPlatform,
-          language,
-          tone,
-          customPrompt
-        });
-
-        const contentsParts = [{ text: promptText }];
-
-        if (State.extractedFramesBase64 && State.extractedFramesBase64.length > 0) {
-          State.extractedFramesBase64.forEach(base64 => {
-            contentsParts.push({
-              inline_data: {
-                mime_type: "image/jpeg",
-                data: base64
-              }
-            });
-          });
-        }
-
-        // Updated Endpoint to Stable Gemini-2.5-flash
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${State.apiKey}`;
-
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: contentsParts }],
-            generationConfig: {
-              temperature: 0.7,
-              response_mime_type: "application/json"
-            }
-          })
-        });
-
-        if (!response.ok) {
-          const errData = await response.json().catch(() => ({}));
-          throw new Error(errData.error?.message || `HTTP ${response.status}`);
-        }
-
-        const rawResult = await response.json();
-        const responseText = rawResult.candidates?.[0]?.content?.parts?.[0]?.text;
-
-        if (!responseText) throw new Error("Empty response returned from API");
-
-        const parsedData = JSON.parse(responseText);
-        State.currentGeneratedData = parsedData;
-
-        renderResultsDashboard(parsedData);
-        saveToHistory(videoTitle || 'Untitled Video', State.selectedPlatform, parsedData);
-
-        document.getElementById('loadingState').classList.add('hidden');
-        document.getElementById('resultsDashboard').classList.remove('hidden');
-        document.getElementById('resultsDashboard').classList.add('flex');
-        showToast('SEO Strategy successfully generated!', 'success');
-
-      } catch (err) {
-        console.error('Generation Failed:', err);
-        document.getElementById('loadingState').classList.add('hidden');
-        document.getElementById('emptyState').classList.remove('hidden');
-        showToast(`Generation Failed: ${err.message}`, 'error');
-      }
-    }
-
-    function buildGeminiPrompt({ title, filename, platform, language, tone, customPrompt }) {
-      return `
-You are the world's top Video SEO Specialist and Viral Growth Hacker.
-Analyze the provided video details and video keyframes (if attached) and generate a complete, viral SEO metadata package.
-
-TARGET PLATFORM: ${platform}
-OUTPUT LANGUAGE: ${language}
-CONTENT TONE: ${tone}
-VIDEO TITLE/TOPIC: ${title}
-FILE NAME: ${filename}
-CUSTOM USER INSTRUCTIONS: ${customPrompt || 'None'}
-
-Return ONLY a valid JSON object matching the exact structure below:
-
-{
-  "viralScore": 92,
-  "seoScore": 95,
-  "engagementScore": 88,
-  "viralTitles": ["10 Titles..."],
-  "longDescription": "Full multi-paragraph description...",
-  "shortDescription": "2-3 sentence overview...",
-  "youtubeTags": ["tag1", "tag2"],
-  "seoKeywords": ["keyword1", "keyword2"],
-  "trendingHashtags": ["#hashtag1", "#hashtag2"],
-  "thumbnailText": "Bold text for thumbnail",
-  "thumbnailHook": "Visual hook description",
-  "pinnedComment": "Engaging question for viewers...",
-  "callToAction": "Subscribe & download...",
-  "bestCategory": "Category Name",
-  "targetAudience": "Audience description",
-  "bestUploadTime": "7:00 PM EST",
-  "bestUploadDay": "Thursday",
-  "thumbnailColors": ["#FF0000", "#000000", "#FFFFFF"],
-  "thumbnailStyle": "Style description",
-  "top20SearchKeywords": ["k1", "k2"],
-  "similarViralTopics": ["Topic 1", "Topic 2"],
-  "videoChapters": ["00:00 - Intro", "01:30 - Main Point"],
-  "playlistName": "Playlist Title",
-  "suggestedFileName": "optimized_video_filename.mp4",
-  "topCompetitorKeywords": ["ck1", "ck2"],
-  "highCpcKeywords": ["h1", "h2"],
-  "lowCompetitionKeywords": ["l1", "l2"],
-  "trendingSearchTerms": ["t1", "t2"]
-}
-`;
-    }
-
-    function renderResultsDashboard(data) {
-      document.getElementById('viralScoreMeter').innerText = `${data.viralScore || 90}%`;
-      document.getElementById('viralBar').style.width = `${data.viralScore || 90}%`;
-
-      document.getElementById('seoScoreMeter').innerText = `${data.seoScore || 92}%`;
-      document.getElementById('seoBar').style.width = `${data.seoScore || 92}%`;
-
-      document.getElementById('ctrScoreMeter').innerText = `${data.engagementScore || 88}%`;
-      document.getElementById('ctrBar').style.width = `${data.engagementScore || 88}%`;
-
-      const textLength = (data.longDescription || '').length;
-      document.getElementById('charCountMeter').innerText = `${textLength} chars`;
-      document.getElementById('readTimeMeter').innerText = `${Math.ceil(textLength / 800)}m read`;
-
-      const container = document.getElementById('generatedContentContainer');
-      container.innerHTML = '';
-
-      const sections = [
-        { id: 'titles', title: '1. Viral SEO Titles (Top 10)', icon: 'type', content: formatList(data.viralTitles) },
-        { id: 'longDesc', title: '2. Long SEO Description', icon: 'align-left', content: data.longDescription },
-        { id: 'shortDesc', title: '3. Short Description', icon: 'file-text', content: data.shortDescription },
-        { id: 'tags', title: '4. Video Tags & Keywords', icon: 'tag', content: formatBadges(data.youtubeTags) },
-        { id: 'hashtags', title: '5. Trending Hashtags', icon: 'hash', content: formatBadges(data.trendingHashtags, 'indigo') },
-        { 
-          id: 'thumbnail', 
-          title: '6. Thumbnail Concept & Hooks', 
-          icon: 'image', 
-          content: `
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="p-3 bg-slate-100 dark:bg-slate-800/60 rounded-xl">
-                <span class="text-xs font-bold uppercase text-indigo-500">Overlay Text</span>
-                <p class="font-black text-lg mt-1 text-slate-800 dark:text-slate-100">"${data.thumbnailText}"</p>
-              </div>
-              <div class="p-3 bg-slate-100 dark:bg-slate-800/60 rounded-xl">
-                <span class="text-xs font-bold uppercase text-indigo-500">Visual Hook</span>
-                <p class="text-xs mt-1 text-slate-600 dark:text-slate-300">${data.thumbnailHook}</p>
-              </div>
-            </div>
-          ` 
-        },
-        { id: 'engagement', title: '7. Pinned Comment & CTA', icon: 'message-square', content: `<strong>Pinned Comment:</strong><br/>${data.pinnedComment}<br/><br/><strong>Call To Action:</strong><br/>${data.callToAction}` },
-        { id: 'highCpc', title: '8. High CPC & Low Competition Keywords', icon: 'dollar-sign', content: formatBadges(data.highCpcKeywords, 'emerald') },
-        { id: 'chapters', title: '9. Suggested Video Chapters', icon: 'list-ordered', content: formatList(data.videoChapters) },
-        { 
-          id: 'publishing', 
-          title: '10. Optimal Publishing Strategy', 
-          icon: 'clock', 
-          content: `
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
-              <div class="p-3 bg-slate-100 dark:bg-slate-800/60 rounded-xl">
-                <span class="text-[10px] text-slate-400 uppercase font-bold">Best Day</span>
-                <p class="font-bold text-sm text-indigo-500">${data.bestUploadDay}</p>
-              </div>
-              <div class="p-3 bg-slate-100 dark:bg-slate-800/60 rounded-xl">
-                <span class="text-[10px] text-slate-400 uppercase font-bold">Best Time</span>
-                <p class="font-bold text-sm text-indigo-500">${data.bestUploadTime}</p>
-              </div>
-              <div class="p-3 bg-slate-100 dark:bg-slate-800/60 rounded-xl">
-                <span class="text-[10px] text-slate-400 uppercase font-bold">Category</span>
-                <p class="font-bold text-sm text-indigo-500">${data.bestCategory}</p>
-              </div>
-            </div>
-          ` 
-        }
-      ];
-
-      sections.forEach(sec => {
-        container.appendChild(createResultCard(sec));
-      });
-
-      lucide.createIcons();
-    }
-
-    function createResultCard({ id, title, icon, content }) {
-      const card = document.createElement('div');
-      card.className = 'glass-panel p-5 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 space-y-3';
-      card.innerHTML = `
-        <div class="flex items-center justify-between border-b border-slate-200/50 dark:border-slate-800/50 pb-3">
-          <h3 class="font-semibold text-sm flex items-center gap-2 text-slate-800 dark:text-slate-100">
-            <i data-lucide="${icon}" class="w-4 h-4 text-indigo-500"></i>
-            ${title}
-          </h3>
-          <div class="flex items-center gap-1">
-            <button onclick="ExportManager.copySection('${id}')" class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 transition-all text-xs flex items-center gap-1">
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
+            <!-- Submit Button -->
+            <button onclick="generateViralContent()" id="submitBtn" 
+                    class="w-full gradient-bg hover:opacity-90 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center text-lg">
+                <i class="fa-solid fa-bolt mr-2"></i> Generate Viral Package
             </button>
-          </div>
         </div>
-        <div id="section_content_${id}" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-          ${content}
+
+        <!-- Output Sections Container -->
+        <div id="outputContainer" class="hidden space-y-6">
+            
+            <div class="flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-emerald-400 flex items-center">
+                    <i class="fa-solid fa-fire-flame-curved mr-2"></i> High-CTR Viral Output
+                </h2>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingState" class="hidden bg-slate-800 rounded-2xl p-8 border border-slate-700 text-center">
+                <i class="fa-solid fa-spinner fa-spin text-4xl text-indigo-400 mb-3"></i>
+                <p class="text-slate-300 font-medium">Video frame analysis aur psychological viral triggers process ho rahe hain...</p>
+            </div>
+
+            <div id="resultsWrapper" class="space-y-6">
+                <!-- 1. Titles Section -->
+                <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-indigo-400 flex items-center">
+                                <i class="fa-solid fa-heading mr-2"></i> High CTR / Psychological Clickbait Titles
+                            </h3>
+                            <p class="text-xs text-slate-400">Curiosity Gap & High Retention Titles</p>
+                        </div>
+                        <button onclick="copySection('titlesList')" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg transition-all">
+                            <i class="fa-regular fa-copy mr-1"></i> Copy All Titles
+                        </button>
+                    </div>
+                    <ul id="titlesList" class="space-y-3 text-slate-200"></ul>
+                </div>
+
+                <!-- 2. First 3 Seconds Hook Line -->
+                <div class="bg-slate-800 rounded-2xl p-6 border border-amber-500/30 shadow-xl">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-bold text-amber-400 flex items-center">
+                            <i class="fa-solid fa-microphone-lines mr-2"></i> Video Hook Line (Pehle 3 Sec Me Kia Bolna Hai)
+                        </h3>
+                        <button onclick="copySection('hookBox')" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg transition-all">
+                            <i class="fa-regular fa-copy mr-1"></i> Copy Hook
+                        </button>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-3">Viewer drop-off rokne ke liye starting hook</p>
+                    <div id="hookBox" class="bg-slate-900 p-4 rounded-xl text-amber-200 font-bold border border-amber-500/20"></div>
+                </div>
+
+                <!-- 3. Description Section -->
+                <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold text-indigo-400 flex items-center">
+                            <i class="fa-solid fa-align-left mr-2"></i> Algorithm Optimized Description
+                        </h3>
+                        <button onclick="copySection('descBox')" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg transition-all">
+                            <i class="fa-regular fa-copy mr-1"></i> Copy Description
+                        </button>
+                    </div>
+                    <div id="descBox" class="bg-slate-900 p-4 rounded-xl text-slate-300 leading-relaxed whitespace-pre-wrap border border-slate-700/50"></div>
+                </div>
+
+                <!-- 4. Tags Section -->
+                <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold text-indigo-400 flex items-center">
+                            <i class="fa-solid fa-tags mr-2"></i> SEO Tags
+                        </h3>
+                        <button onclick="copySection('tagsBox')" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg transition-all">
+                            <i class="fa-regular fa-copy mr-1"></i> Copy Tags
+                        </button>
+                    </div>
+                    <div id="tagsBox" class="bg-slate-900 p-4 rounded-xl text-indigo-200 font-mono text-sm leading-loose border border-slate-700/50"></div>
+                </div>
+
+                <!-- 5. Hashtags Section -->
+                <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold text-indigo-400 flex items-center">
+                            <i class="fa-solid fa-hashtag mr-2"></i> High Reach Hashtags
+                        </h3>
+                        <button onclick="copySection('hashtagsBox')" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg transition-all">
+                            <i class="fa-regular fa-copy mr-1"></i> Copy Hashtags
+                        </button>
+                    </div>
+                    <div id="hashtagsBox" class="bg-slate-900 p-4 rounded-xl text-pink-400 font-semibold tracking-wide border border-slate-700/50"></div>
+                </div>
+
+            </div>
+
         </div>
-      `;
-      return card;
-    }
 
-    function formatList(arr) {
-      if (!Array.isArray(arr)) return arr || '';
-      return `<ol class="list-decimal list-inside space-y-1.5">${arr.map(item => `<li>${item}</li>`).join('')}</ol>`;
-    }
+    </main>
 
-    function formatBadges(arr, color = 'slate') {
-      if (!Array.isArray(arr)) return arr || '';
-      return `<div class="flex flex-wrap gap-1.5">${arr.map(item => `<span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-${color}-100 dark:bg-${color}-950/60 text-${color}-700 dark:text-${color}-300 border border-${color}-200 dark:border-${color}-800">${item}</span>`).join('')}</div>`;
-    }
+    <script>
+        // LocalStorage Key & Drag-Drop Events Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedKey = localStorage.getItem('groq_api_key');
+            if (savedKey) {
+                document.getElementById('apiKey').value = savedKey;
+                document.getElementById('saveStatus').classList.remove('hidden');
+            }
 
-    const ExportManager = {
-      copySection(id) {
-        const elem = document.getElementById(`section_content_${id}`);
-        if (!elem) return;
-        navigator.clipboard.writeText(elem.innerText);
-        showToast('Copied to clipboard!', 'info');
-      },
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('videoFileInput');
 
-      getRawExportText() {
-        if (!State.currentGeneratedData) return '';
-        const d = State.currentGeneratedData;
-        return `
-=== AI VIDEO SEO STRATEGY ===
-Platform: ${State.selectedPlatform}
+            dropZone.addEventListener('click', () => fileInput.click());
 
---- TOP VIRAL TITLES ---
-${(d.viralTitles || []).join('\n')}
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('border-indigo-500', 'bg-indigo-500/10');
+            });
 
---- LONG DESCRIPTION ---
-${d.longDescription}
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('border-indigo-500', 'bg-indigo-500/10');
+            });
 
---- SHORT DESCRIPTION ---
-${d.shortDescription}
-
---- TAGS ---
-${(d.youtubeTags || []).join(', ')}
-
---- HASHTAGS ---
-${(d.trendingHashtags || []).join(' ')}
-
---- THUMBNAIL CONCEPT ---
-Text: ${d.thumbnailText}
-Hook: ${d.thumbnailHook}
-
---- PINNED COMMENT ---
-${d.pinnedComment}
-
---- PUBLISHING ---
-Day: ${d.bestUploadDay}
-Time: ${d.bestUploadTime}
-Category: ${d.bestCategory}
-`;
-      },
-
-      exportAllTXT() {
-        const text = this.getRawExportText();
-        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = `SEO_Strategy_${State.selectedPlatform}.txt`;
-        a.click();
-      },
-
-      exportAllPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const text = this.getRawExportText();
-        const lines = doc.splitTextToSize(text, 180);
-        doc.setFontSize(10);
-        doc.text(lines, 10, 10);
-        doc.save(`SEO_Strategy_${State.selectedPlatform}.pdf`);
-      },
-
-      exportAllDOCX() {
-        if (!window.docx) return;
-        const text = this.getRawExportText();
-        const doc = new docx.Document({
-          sections: [{
-            properties: {},
-            children: text.split('\n').map(line => new docx.Paragraph({ text: line }))
-          }]
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('border-indigo-500', 'bg-indigo-500/10');
+                if (e.dataTransfer.files.length > 0) {
+                    fileInput.files = e.dataTransfer.files;
+                    handleVideoUpload(fileInput);
+                }
+            });
         });
 
-        docx.Packer.toBlob(doc).then(blob => {
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = `SEO_Strategy_${State.selectedPlatform}.docx`;
-          a.click();
-        });
-      }
-    };
+        // Key Safe/Remove Functions
+        function saveApiKey() {
+            const key = document.getElementById('apiKey').value.trim();
+            if (key) {
+                localStorage.setItem('groq_api_key', key);
+                document.getElementById('saveStatus').classList.remove('hidden');
+                alert('API Key browser me save ho gayi hai!');
+            } else {
+                localStorage.removeItem('groq_api_key');
+                document.getElementById('saveStatus').classList.add('hidden');
+                alert('API Key delete kar di gayi hai.');
+            }
+        }
 
-    function saveToHistory(title, platform, data) {
-      const item = {
-        id: Date.now(),
-        title,
-        platform,
-        date: new Date().toLocaleDateString(),
-        data
-      };
-      State.history.unshift(item);
-      if (State.history.length > 20) State.history.pop();
-      localStorage.setItem('viral_seo_history', JSON.stringify(State.history));
-    }
+        // Preview Player Setup
+        function handleVideoUpload(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const videoURL = URL.createObjectURL(file);
+                const videoPreview = document.getElementById('videoPreview');
+                
+                videoPreview.src = videoURL;
+                document.getElementById('videoFileName').innerText = file.name;
+                document.getElementById('uploadPlaceholder').classList.add('hidden');
+                document.getElementById('videoPreviewContainer').classList.remove('hidden');
 
-    function renderHistory() {
-      const list = document.getElementById('historyList');
-      if (State.history.length === 0) {
-        list.innerHTML = `<p class="text-xs text-slate-400 text-center py-6">No saved history yet.</p>`;
-        return;
-      }
-      list.innerHTML = State.history.map(item => `
-        <div class="p-3 bg-slate-100 dark:bg-slate-900/60 rounded-xl flex items-center justify-between hover:border-indigo-500 border border-transparent transition-all">
-          <div>
-            <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200">${item.title}</h4>
-            <p class="text-[10px] text-slate-400">${item.platform} • ${item.date}</p>
-          </div>
-          <button onclick="loadHistoryItem(${item.id})" class="px-3 py-1 bg-indigo-600 text-white text-xs rounded-lg hover:bg-indigo-700 transition-all">
-            Load
-          </button>
-        </div>
-      `).join('');
-    }
+                const promptBox = document.getElementById('videoPrompt');
+                if (!promptBox.value) {
+                    promptBox.value = `[Uploaded File: ${file.name}] - Video gameplay/content analysis.`;
+                }
+            }
+        }
 
-    function loadHistoryItem(id) {
-      const item = State.history.find(h => h.id === id);
-      if (!item) return;
-      State.currentGeneratedData = item.data;
-      State.selectedPlatform = item.platform;
-      renderPlatforms();
-      renderResultsDashboard(item.data);
+        async function generateViralContent() {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const prompt = document.getElementById('videoPrompt').value.trim();
+            const platform = document.querySelector('input[name="platform"]:checked').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const outputContainer = document.getElementById('outputContainer');
+            const loadingState = document.getElementById('loadingState');
+            const resultsWrapper = document.getElementById('resultsWrapper');
 
-      document.getElementById('historyModal').classList.add('hidden');
-      document.getElementById('emptyState').classList.add('hidden');
-      document.getElementById('resultsDashboard').classList.remove('hidden');
-      document.getElementById('resultsDashboard').classList.add('flex');
-      showToast(`Loaded history project: ${item.title}`, 'info');
-    }
+            if (!apiKey) {
+                alert('Meharbani karke Groq API Key daalein!');
+                return;
+            }
 
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
+            if (!prompt) {
+                alert('Video ki detail likhiye!');
+                return;
+            }
 
-      const colors = {
-        success: 'bg-emerald-600 text-white',
-        error: 'bg-red-600 text-white',
-        info: 'bg-indigo-600 text-white'
-      };
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing...';
+            outputContainer.classList.remove('hidden');
+            loadingState.classList.remove('hidden');
+            resultsWrapper.classList.add('hidden');
 
-      toast.className = `p-3.5 rounded-xl text-xs font-medium shadow-xl flex items-center gap-2 transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto ${colors[type]}`;
-      toast.innerHTML = `
-        <i data-lucide="${type === 'success' ? 'check-circle' : type === 'error' ? 'alert-circle' : 'info'}" class="w-4 h-4"></i>
-        <span>${message}</span>
-      `;
+            const systemPrompt = `You are a world-class Social Media Growth Hacker. Your goal is MAXIMUM CTR (Click-Through Rate) and MAXIMUM VIRALITY.
+Avoid boring, generic AI titles. Use psychological triggers: Fear of missing out, extreme curiosity, high stakes, shock value, numbers, bold claims, or open loops.
 
-      container.appendChild(toast);
-      lucide.createIcons();
+Respond ONLY with a strictly valid JSON object (no markdown, no backticks).
+Structure:
+{
+  "titles": [
+    "🔥 [Curiosity Gap Title]",
+    "😱 [Shock/Extreme Claim Title]",
+    "⚡ [Short & Punchy Title (Under 5 words)]",
+    "🧠 [Psychological Story/Challenge Title]",
+    "🚀 [High Search Volume / Trend Hook Title]"
+  ],
+  "video_hook": "An insanely powerful first 3-second spoken opening line/script to prevent viewers from scrolling away.",
+  "description": "Engaging description with a strong hook in the first line, key highlights, algorithm-friendly terms, and a clear Call to Action.",
+  "tags": "15 comma separated highly targeted tags (mix of broad and ultra-niche)",
+  "hashtags": "8-10 super active hashtags for ${platform}"
+}`;
 
-      requestAnimationFrame(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-      });
+            const userPrompt = `Platform: ${platform}\nVideo Details: ${prompt}`;
 
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-2');
-        setTimeout(() => toast.remove(), 300);
-      }, 4000);
-    }
-  </script>
+            try {
+                const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: "llama-3.3-70b-versatile",
+                        messages: [
+                            { role: "system", content: systemPrompt },
+                            { role: "user", content: userPrompt }
+                        ],
+                        temperature: 0.85,
+                        response_format: { type: "json_object" }
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.choices && data.choices[0]) {
+                    const res = JSON.parse(data.choices[0].message.content);
+
+                    // Fill Titles
+                    const titlesList = document.getElementById('titlesList');
+                    titlesList.innerHTML = res.titles.map(t => `<li class="bg-slate-900 p-3.5 rounded-xl border border-slate-700/50 flex items-center font-semibold text-white hover:border-indigo-500 transition-all"><i class="fa-solid fa-fire text-red-500 mr-3 text-lg"></i> ${t}</li>`).join('');
+
+                    // Fill First 3-sec Hook
+                    document.getElementById('hookBox').innerText = res.video_hook;
+
+                    // Fill Description
+                    document.getElementById('descBox').innerText = res.description;
+
+                    // Fill Tags
+                    document.getElementById('tagsBox').innerText = res.tags;
+
+                    // Fill Hashtags
+                    document.getElementById('hashtagsBox').innerText = res.hashtags;
+
+                    loadingState.classList.add('hidden');
+                    resultsWrapper.classList.remove('hidden');
+                } else {
+                    alert('Groq API Error: Response nahi mila.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Request Fail ho gayi! Check karein ke API Key sahi hai ya nahi.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fa-solid fa-bolt mr-2"></i> Generate Viral Package';
+            }
+        }
+
+        function copySection(elementId) {
+            const el = document.getElementById(elementId);
+            let textToCopy = el.innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+    </script>
 </body>
 </html>
